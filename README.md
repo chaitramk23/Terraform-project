@@ -2,43 +2,46 @@
 
 Explanation of the Terraform project involving the use of S3 for state file storage and DynamoDB for state file locking:
 
-Project Overview:
+# Project Overview:
 This project involves setting up an ideal infrastructure automation process using Terraform. 
 
-*The project aims to:
+# The project aims to:
+-Store Terraform state files remotely and securely in AWS S3.
 
-*Store Terraform state files remotely and securely in AWS S3.
+-Prevent concurrent Terraform executions that could lead to conflicts by using AWS DynamoDB for state file locking.
 
-*Prevent concurrent Terraform executions that could lead to conflicts by using AWS DynamoDB for state file locking.
-
-*This setup is crucial for teams or individuals who want to manage infrastructure as code (IaC) in a collaborative environment where multiple people might be 
+-This setup is crucial for teams or individuals who want to manage infrastructure as code (IaC) in a collaborative environment where multiple people might be 
  applying changes to the same infrastructure.
 
-*Key Components of the Project:
+# Key Components of the Project:
 -Terraform State File:
+
 -The state file (terraform.tfstate) contains the configuration of the infrastructure, including the current status of resources that have been deployed. Terraform 
  uses this state to determine what changes need to be made during future executions (such as terraform plan or terraform apply).
+
 -Challenge: The state file needs to be persistent, especially in teams or automated CI/CD environments. Without a centralized state, it becomes challenging to keep track of infrastructure changes.
  
-*AWS S3 (Simple Storage Service):
+# AWS S3 (Simple Storage Service):
 -In this setup, the Terraform state file is stored remotely in an S3 bucket. S3 is highly durable, meaning the state file is protected from data loss, and is 
  centrally accessible by multiple users or systems.
+
 -Benefits:
  Centralized storage: The state file is stored in a location accessible by anyone with the right credentials, enabling collaboration across different systems and 
  teams.
 -Versioning: S3 supports versioning, so you can recover previous versions of the state file if necessary.
 
-*AWS DynamoDB:
+# AWS DynamoDB:
 -DynamoDB is used to manage state locking. When one person runs a terraform apply command, DynamoDB locks the state file to prevent others from making conflicting 
  changes simultaneously.
  
-*How It Works:
+# How It Works:
 -DynamoDB maintains a lock record in a table. When Terraform executes a plan or apply, it writes a lock to DynamoDB. If another person tries to execute 
   Terraform, they will detect the lock and be prevented from making changes until the lock is released.
-*Benefits:
+
+-Benefits:
 -Concurrency control: Only one process can modify the infrastructure at a time, ensuring that you do not run into issues where two changes conflict with each 
   other.
-*Safe collaboration: Multiple team members can use the same Terraform configuration without the risk of interfering with each other’s work.
+-Safe collaboration: Multiple team members can use the same Terraform configuration without the risk of interfering with each other’s work.
 
 # Steps in Setting Up the Project:
 1. Create an S3 Bucket for Storing Terraform State:
