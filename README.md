@@ -107,6 +107,6 @@ Developer 2 attempts to run the same command but is blocked until Developer 1’
 Developer 1’s Terraform operation completes, and the state lock is released from DynamoDB.
 Developer 2 can now execute their operation without conflict.
 Use Cases:
-Team-Based Infrastructure Management: Ideal for teams working in a shared environment.
+Team-Based Infrastructure Management: Ideal for teams working in a shar
 Automated Infrastructure Management: Useful in CI/CD pipelines where infrastructure changes need to be controlled and tracked reliably.
 This project ensures that Terraform is used in a safe, scalable, and collaborative way, making it suitable for both small teams and large-scale organizations
