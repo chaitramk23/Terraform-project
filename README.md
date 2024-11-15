@@ -58,7 +58,7 @@ aws dynamodb create-table \
   --table-name terraform-lock \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
-  --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+  --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5```
 
 
 3. Configure Terraform Backend:
@@ -75,7 +75,7 @@ terraform {
     dynamodb_table = "terraform-lock"
     acl            = "bucket-owner-full-control"
   }
-}
+}```
 
 
 4. Run Terraform Initialization:
