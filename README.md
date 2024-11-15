@@ -65,7 +65,7 @@ Update the main.tf file to configure Terraform’s backend to use the S3 bucket 
 Example Terraform Configuration:
 hcl
 Copy code
-```terraform {
+`terraform {
   backend "s3" {
     bucket         = "my-terraform-state-bucket"
     key            = "path/to/your/terraform.tfstate"
@@ -74,7 +74,7 @@ Copy code
     dynamodb_table = "terraform-lock"
     acl            = "bucket-owner-full-control"
   }
-} ```
+} `
 
 4. Run Terraform Initialization:
 After configuring the backend, run terraform init to initialize Terraform and configure the backend settings.
