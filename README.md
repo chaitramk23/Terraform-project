@@ -54,11 +54,11 @@ Copy code
 This table will handle locking to prevent concurrent modifications.
 bash
 Copy code
-```aws dynamodb create-table \
+`aws dynamodb create-table \
   --table-name terraform-lock \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
-  --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5```
+  --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5`
 
 3. Configure Terraform Backend:
 Update the main.tf file to configure Terraform’s backend to use the S3 bucket for storing the state and DynamoDB for locking.
