@@ -54,7 +54,7 @@ Copy code
 This table will handle locking to prevent concurrent modifications.
 bash
 Copy code
-aws dynamodb create-table \
+```aws dynamodb create-table \
   --table-name terraform-lock \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
