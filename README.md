@@ -58,14 +58,14 @@ Copy code
   --table-name terraform-lock \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
-  --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5```
+  --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
 
 3. Configure Terraform Backend:
 Update the main.tf file to configure Terraform’s backend to use the S3 bucket for storing the state and DynamoDB for locking.
 Example Terraform Configuration:
-```hcl
+hcl
 Copy code
-terraform {
+```terraform {
   backend "s3" {
     bucket         = "my-terraform-state-bucket"
     key            = "path/to/your/terraform.tfstate"
@@ -74,7 +74,7 @@ terraform {
     dynamodb_table = "terraform-lock"
     acl            = "bucket-owner-full-control"
   }
-} ```
+} 
 
 4. Run Terraform Initialization:
 After configuring the backend, run terraform init to initialize Terraform and configure the backend settings.
@@ -88,9 +88,9 @@ This command sets up the S3 and DynamoDB integration.
 Once initialized, you can apply Terraform configurations using `terraform plan` and `terraform apply`.
 How It Works:
 During terraform apply, Terraform will lock the state file using DynamoDB and store the updated state in the S3 bucket. This ensures that no other process will modify the state concurrently.
+
 Benefits of This Setup:
 Centralized State Management:
-
 The state file is stored in a secure, persistent, and accessible location (S3), making it easy to track and manage infrastructure changes over time.
 Concurrent Execution Safety:
 
@@ -101,12 +101,4 @@ Teams can work simultaneously on the same infrastructure without worrying about 
 Disaster Recovery:
 
 Storing the state in S3 with versioning allows you to easily roll back to a previous version if something goes wrong.
-Project Flow:
-Developer 1 runs terraform plan or terraform apply, locking the state using DynamoDB.
-Developer 2 attempts to run the same command but is blocked until Developer 1’s process completes.
-Developer 1’s Terraform operation completes, and the state lock is released from DynamoDB.
-Developer 2 can now execute their operation without conflict.
-Use Cases :ff :c
-Team-Based Infrastructure Management: Ideal for teams working in a shar
-Automated Infrastructure Management: Useful in CI/CD pipelines where infrastructure changes need to be controlled and tracked reliably.
-This project ensures that Terraform is used in a safe, scalable, and collaborative way, making it suitable for both small teams and large-scale organizations
+
