@@ -93,13 +93,14 @@ Once initialized, you can apply Terraform configurations using `terraform plan` 
 How It Works:
 During terraform apply, Terraform will lock the state file using DynamoDB and store the updated state in the S3 bucket. This ensures that no other process will modify the state concurrently.
 
-**Benefits of This Setup:
-*Centralized State Management:
--The state file is stored in a secure, persistent, and accessible location (S3), making it easy to track and manage infrastructure changes over time.
-*Concurrent Execution Safety:
+# Benefits of This Setup:
+
+# Centralized State Management:
+The state file is stored in a secure, persistent, and accessible location (S3), making it easy to track and manage infrastructure changes over time.
+# Concurrent Execution Safety:
 The use of DynamoDB prevents multiple Terraform executions from altering the state at the same time, thus avoiding conflicts or race conditions.
-*Collaboration:
+# Collaboration:
 Teams can work simultaneously on the same infrastructure without worrying about conflicting updates to the state file.
-*Disaster Recovery:
+# Disaster Recovery:
 Storing the state in S3 with versioning allows you to easily roll back to a previous version if something goes wrong.
 
