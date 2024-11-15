@@ -6,6 +6,7 @@ Project Overview:
 This project involves setting up an ideal infrastructure automation process using Terraform. 
 
 *The project aims to:
+
 *Store Terraform state files remotely and securely in AWS S3.
 *Prevent concurrent Terraform executions that could lead to conflicts by using AWS DynamoDB for state file locking.
 *This setup is crucial for teams or individuals who want to manage infrastructure as code (IaC) in a collaborative environment where multiple people might be 
