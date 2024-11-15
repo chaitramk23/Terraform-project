@@ -48,7 +48,7 @@ This project involves setting up an ideal infrastructure automation process usin
 You need to create an S3 bucket that will hold your terraform.tfstate file.
 bash
 Copy code
-'aws s3api create-bucket --bucket my-terraform-state-bucket --region us-east-1'
+`aws s3api create-bucket --bucket my-terraform-state-bucket --region us-east-1`
 
 2. Create a DynamoDB Table for State Locking:
 This table will handle locking to prevent concurrent modifications.
