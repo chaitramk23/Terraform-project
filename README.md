@@ -1,2 +1,2 @@
-# ideal-terraform-set-up
-ideal terraform set up
+# Ideal-terraform-set-up
+
