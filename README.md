@@ -75,7 +75,8 @@ terraform {
     dynamodb_table = "terraform-lock"
     acl            = "bucket-owner-full-control"
   }
-}```
+}
+```
 
 
 4. Run Terraform Initialization:
